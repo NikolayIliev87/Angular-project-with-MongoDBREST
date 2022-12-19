@@ -1,0 +1,22 @@
+<section>
+    <div class="loginform">
+        <h2>Login Form</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="formSubmitHandler()">
+            <div>
+                <label for="text">Email:</label>
+                <input type="text" name="email" formControlName="email">
+            </div>
+            <ng-container *ngIf="loginForm.get('email')?.touched">
+                <p *ngIf="loginForm.get('email')?.errors?.['required']">Email is required!</p>
+            </ng-container>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" formControlName="password">
+            </div>
+            <ng-container *ngIf="loginForm.get('password')?.touched">
+                <p *ngIf="loginForm.get('password')?.errors?.['required']">Password is required!</p>
+            </ng-container>
+            <button *ngIf="loginForm.valid">LogIn</button>
+        </form>
+    </div>
+</section>

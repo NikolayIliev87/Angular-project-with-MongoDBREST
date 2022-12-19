@@ -1,0 +1,55 @@
+<section>
+    <div class="logoutform">
+        <h2>Logout Form</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="formSubmitHandler()">
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" name="email" formControlName="email">
+            </div>
+            <ng-container *ngIf="registerForm.get('email')?.touched">
+                <p *ngIf="registerForm.get('email')?.errors?.['required']">Email is required!</p>
+                <p *ngIf="registerForm.get('email')?.errors?.['email']">Invalid Email!</p>
+            </ng-container>
+            <div>
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname" formControlName="firstname">
+            </div>
+            <ng-container *ngIf="registerForm.get('firstname')?.touched">
+                <p *ngIf="registerForm.get('firstname')?.errors?.['required']">First name is required!</p>
+            </ng-container>
+            <div>
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname" formControlName="lastname">
+            </div>
+            <ng-container *ngIf="registerForm.get('lastname')?.touched">
+                <p *ngIf="registerForm.get('lastname')?.errors?.['required']">Last name is required!</p>
+            </ng-container>
+            <div>
+                <label for="personalinfo">Personal Info:</label>
+                <textarea name="personalinfo" formControlName="personalinfo" cols="30" rows="10"></textarea>
+            </div>
+            <ng-container formGroupName="passwords">
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" formControlName="password">
+                </div>
+                <ng-container *ngIf="registerForm.get('passwords')?.get('password')?.touched">
+                    <p *ngIf="registerForm.get('passwords')?.get('password')?.errors?.['required']">Password is
+                        required!</p>
+                    <p *ngIf="registerForm.get('passwords')?.get('password')?.errors?.['minlength']">Password must be
+                        at least 5 chars long!</p>
+                </ng-container>
+                <div>
+                    <label for="repass">Re-Pass:</label>
+                    <input type="password" name="repass" formControlName="repass">
+                </div>
+                <p
+                    *ngIf="registerForm.get('passwords')?.errors?.['passwordsMatchValidator'] && registerForm.get('passwords')?.get('repass')?.touched">
+                    Passwords doesnt match!</p>
+            </ng-container>
+            <button *ngIf="registerForm.valid">Register</button>
+        </form>
+    </div>
+</section>
+<!-- {{ registerForm.value | json }}
+{{ registerForm.get('pass')?.errors | json }} -->

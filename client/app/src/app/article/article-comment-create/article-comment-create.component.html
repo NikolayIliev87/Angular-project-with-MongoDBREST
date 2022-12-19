@@ -1,0 +1,11 @@
+<form [formGroup]="commentCreateForm" (ngSubmit)="formSubmitHandler()">
+    <div>
+        <label for="comment">Comment:</label>
+        <input type="text" name="comment" formControlName="comment">
+        <ng-container *ngIf="commentCreateForm.get('comment')?.touched">
+            <div *ngIf="commentCreateForm.get('comment')?.errors?.['required']">Comment text is required!</div>
+            <div *ngIf="commentCreateForm.get('comment')?.errors?.['minlength']">Comment text must be at least 10 chars long!</div>
+        </ng-container>
+    </div>
+    <button *ngIf="commentCreateForm.valid">Add Comment</button>
+</form>

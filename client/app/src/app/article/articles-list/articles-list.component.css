@@ -1,0 +1,145 @@
+section {
+    height: 90vh;
+}
+
+h2 {
+    text-align:center;
+    border-bottom-style: double;
+    margin: 0px;
+    padding-top: 40px;
+}
+
+.search-filter {
+    display: flex;
+    justify-content: space-between;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px;
+    border-style: solid;
+
+}
+
+.articles-latest {
+    height: 90%;
+}
+
+.article {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px;
+    border-style: dashed;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgrey;
+}
+
+.title a {
+    width: 60%;
+    padding: 5px 5px 0px 5px;
+    text-decoration: none;
+}
+
+.title h3 {
+    margin: 0px;
+    color: rgb(21, 21, 126);
+}
+
+.title h3:hover {
+    color: blue;
+}
+
+.title p {
+    width: 20%;
+    padding: 5px 5px 0px 5px;
+    margin: 0px;
+    align-items: center;
+    text-align: center;
+}
+
+.resolved-topic span {
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(19, 138, 19);
+    border-radius: 5px;
+    background-color: rgb(19, 138, 19);
+    padding: 2px 5px 2px 5px;
+    color: whitesmoke;
+}
+
+.open-topic span {
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(154, 101, 2);
+    border-radius: 5px;
+    background-color: rgb(154, 101, 2);
+    padding: 2px 5px 2px 5px;
+    color: whitesmoke;
+}
+
+.followers span {
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(1, 1, 35);
+    border-radius: 5px;
+    background-color: rgb(1, 1, 35);
+    padding: 2px 5px 2px 5px;
+    color: whitesmoke;
+}
+
+.description {
+    padding: 5px 5px 0px 5px;
+    font-weight: bold;
+}
+
+.description span {
+    font-style: italic;
+    font-weight: normal;
+    overflow-wrap: break-word;
+}
+
+.owner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.owner p {
+    margin: 5px;
+}
+
+.owner p:nth-child(1) {
+    width: 30%;
+    text-align: center;
+}
+
+.owner p:nth-child(1) span {
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(201, 224, 247);
+    border-radius: 5px;
+    padding: 2px 5px 2px 5px;
+    text-align: center;
+    background-color: rgb(201, 224, 247);
+    color: rgb(21, 21, 126);
+}
+
+
+.owner p:nth-child(2) {
+    width: 40%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.owner p:nth-child(2) a {
+    text-decoration: none;
+}
+
+.owner p:nth-child(3) {
+    width: 30%;
+    text-align: right;
+    font-weight: bold;
+}

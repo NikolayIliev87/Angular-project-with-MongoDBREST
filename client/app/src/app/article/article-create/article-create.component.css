@@ -1,0 +1,58 @@
+section {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+.createarticleform {
+    margin-top: 50px;
+    width: 500px;
+    height: fit-content;
+    align-items: center;
+    border: 1px;
+    border-style: solid;
+}
+
+.createarticleform h2 {
+    margin-top: 0px;
+    padding: 5px 0px 10px 0px;
+    text-align: center;
+    background-color: rgb(9, 9, 97);
+    color: azure;
+}
+
+.createarticleform form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createarticleform form div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.createarticleform form div label {
+    width: 100px;
+    text-align: right;
+}
+
+.createarticleform form p {
+    color: red;
+    margin: 0px;
+}
+
+.createarticleform form button {
+    width: 25%;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: rgb(9, 9, 97);
+    color: azure;
+}
+
+.createarticleform form button:hover {
+    cursor: pointer;
+    background-color: rgb(110, 110, 113);
+}

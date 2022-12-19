@@ -1,0 +1,32 @@
+<section>
+    <h2>All Posts</h2>
+    <div class="search-filter">
+        <div>
+            <label for="search">Search</label>
+            <input type="text" name="search">
+        </div>
+        <p>filters</p>
+    </div>
+    <div class="articles-list">
+        <div class="article" *ngFor="let article of articleList">
+            <div class="title">
+                <a routerLink="/articles/{{article._id}}">
+                    <h3>{{article.title | shortenDescription : 40}}</h3>
+                </a>
+                <p class="resolved-topic" *ngIf="article.status"><span>Resolved</span></p>
+                <p class="open-topic" *ngIf="!article.status"><span>Open Topic</span></p>
+                <p class="followers">Followers: <span>{{article.followers.length}}</span></p>
+            </div>
+            <p class="description">Description: <span>{{article.description | shortenDescription : 130}} </span></p>
+            <div class="owner">
+                <p><span>{{article.category | shortenDescription : 40}}</span></p>
+                <p>
+                    <a routerLink="/auth/profile/{{article.owner._id}}">
+                        {{article.owner.email}}
+                    </a> asked at {{article.created_at | date: 'MMMM d,y'}}</p>
+                <p>Last Update: {{article.updated_at | date: 'MMMM d,y'}}</p>
+            </div>
+        </div>
+    </div>
+    <div>pagination</div>
+</section>

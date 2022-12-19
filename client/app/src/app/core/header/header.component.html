@@ -1,0 +1,37 @@
+<nav class="navigation">
+    <div>
+        <a class="home" routerLink="/">
+            <i class="fas fa-home"></i>
+            Home
+        </a>
+        <a class="articles" routerLink="/articles">
+            <i class="far fa-newspaper"></i>
+            All Articles
+        </a>
+    </div>
+    <div>
+        <a class="newarticle" *ngIf="isLoggedIn" routerLink="/articles/create">
+            <i class="fas fa-folder-plus"></i>
+            Create New Article
+        </a>
+        <p *ngIf="!isLoggedIn">Welcome guest</p>
+    </div>
+    <div>
+        <a *ngIf="isLoggedIn" routerLink="/auth/profile/{{user._id}}">
+            <i class="fas fa-user-circle"></i>
+            {{user?.email}}'s Profile
+        </a>
+        <a *ngIf="isLoggedIn" routerLink="/auth/logout">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+        <a *ngIf="!isLoggedIn" routerLink="/auth/login">
+            <i class="fas fa-sign-in-alt"></i>
+            Login
+        </a>
+        <a *ngIf="!isLoggedIn" routerLink="/auth/register">
+            <i class="fab fa-creative-commons-by"></i>
+            Register
+        </a>
+    </div>
+</nav>

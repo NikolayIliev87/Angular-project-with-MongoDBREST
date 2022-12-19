@@ -1,0 +1,27 @@
+<section>
+    <h2>Latest Posts</h2>
+    <div class="articles-latest">
+        <div class="article" *ngFor="let article of articleList">
+            <div class="article-title">
+                <a routerLink="/articles/{{article._id}}">
+                    <h3>{{article.title | shortenDescription : 40}}</h3>
+                </a>
+            </div>
+            <div class="article-summary">
+                <div class="article-summary-status">
+                    <p class="resolved-topic" *ngIf="article.status">Resolved</p>
+                    <p class="open-topic" *ngIf="!article.status">Open Topic</p>
+                    <p>Followers: {{article.followers.length}}</p>
+                </div>
+                <div class="article-summary-description"> 
+                    <p>{{article.description | shortenDescription : 200}}</p>
+                </div>
+            </div>
+            <div class="article-creation">
+                <p class="article-creation-owner">{{article.owner.email}} asked at {{article.created_at | date: 'MMMM d,y'}}</p>
+                <p class="article-creation-category">{{article.category}}</p>
+                <p class="article-creation-update">Last update: {{article.updated_at | date: 'MMMM d,y'}}</p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,58 @@
+section {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+.logoutform {
+    margin-top: 50px;
+    width: 500px;
+    height: fit-content;
+    align-items: center;
+    border: 1px;
+    border-style: solid;
+}
+
+.logoutform h2 {
+    margin-top: 0px;
+    padding: 5px 0px 10px 0px;
+    text-align: center;
+    background-color: rgb(9, 9, 97);
+    color: azure;
+}
+
+.logoutform form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logoutform form div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.logoutform form div label {
+    width: 100px;
+    text-align: right;
+}
+
+.logoutform form p {
+    color: red;
+    margin: 0px;
+}
+
+.logoutform form button {
+    width: 25%;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: rgb(9, 9, 97);
+    color: azure;
+}
+
+.logoutform form button:hover {
+    cursor: pointer;
+    background-color: rgb(110, 110, 113);
+}

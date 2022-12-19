@@ -1,0 +1,35 @@
+<section>
+    <div class="createarticleform">
+        <h2>Create Article Form</h2>
+        <form [formGroup]="articleCreateForm" (ngSubmit)="formSubmitHandler()">
+            <div>
+                <label for="title">Title:</label>
+                <input type="text" name="title" formControlName="title">
+            </div>
+            <ng-container *ngIf="articleCreateForm.get('title')?.touched">
+                <p *ngIf="articleCreateForm.get('title')?.errors?.['required']">Title is required!</p>
+                <p *ngIf="articleCreateForm.get('title')?.errors?.['minlength']">Title must be at least 5 chars long!
+                </p>
+            </ng-container>
+            <div>
+                <label for="description">Description:</label>
+                <textarea type="text" name="description" formControlName="description" cols="30" rows="10"></textarea>
+            </div>
+            <ng-container *ngIf="articleCreateForm.get('description')?.touched">
+                <p *ngIf="articleCreateForm.get('description')?.errors?.['required']">Description is required!</p>
+                <p *ngIf="articleCreateForm.get('description')?.errors?.['minlength']">Description must be at least 10
+                    chars long!</p>
+            </ng-container>
+            <div>
+                <label for="category">Category:</label>
+                <input type="text" name="category" formControlName="category">
+            </div>
+            <ng-container *ngIf="articleCreateForm.get('category')?.touched">
+                <p *ngIf="articleCreateForm.get('category')?.errors?.['required']">Category is required!</p>
+            </ng-container>
+            <button *ngIf="articleCreateForm.valid">Create</button>
+        </form>
+    </div>
+</section>
+<!-- {{ registerForm.value | json }}
+{{ registerForm.get('pass')?.errors | json }} -->
