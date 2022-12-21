@@ -1,60 +1,62 @@
 <section>
+    <div class="articleactions">
+        <button class="deletearticle" *ngIf="isOwner" (click)="articleDeleteHandler()">Delete Article</button>
+        <div *ngIf="!isOwner && isLoggedIn">
+            <button class="followarticle" *ngIf="!isFollowed" (click)="articlefollowHandler()">Follow Article</button>
+            <button class="unfollowarticle" *ngIf="isFollowed" (click)="articleunfollowHandler()">Unfollow Article</button>
+        </div>
+    </div>
     <div class="articleeditform">
         <h2 class="resolvedarticle" *ngIf="articleStatus">Resolved</h2>
         <h2 class="openarticle" *ngIf="!articleStatus">Open Topic</h2>
-        <!-- <h2>{{articleStatus?"Resolved":"Open topic"}}</h2> -->
         <form [formGroup]="articleEditForm" (ngSubmit)="formSubmitHandler()">
             <div>
-                <label for="title" >Title:</label>
                 <input type="text" name="title" formControlName="title" [readonly]="!isOwner">
                 <ng-container *ngIf="articleEditForm.get('title')?.touched">
                     <p *ngIf="articleEditForm.get('title')?.errors?.['required']">Title is required!</p>
                     <p *ngIf="articleEditForm.get('title')?.errors?.['minlength']">Title must be at least 5 chars long!</p>
+                    <p *ngIf="articleEditForm.get('title')?.errors?.['maxlength']">Title must be maximum 100 chars long!</p>
                 </ng-container>
             </div>
             <div>
-                <label for="description">Description:</label>
+                <span>asked by:</span>
+                <input type="text" name="owner" formControlName="owner" [readonly]="true">
+                <span>asked at:</span>
+                <input type="text" name="created_at" formControlName="created_at" [readonly]="true">
+                <span>last update at:</span>
+                <input type="text" name="updated_at" formControlName="updated_at" [readonly]="true">
+            </div>
+            <div>
                 <textarea type="text" name="description" formControlName="description" [readonly]="!isOwner"></textarea>
                 <ng-container *ngIf="articleEditForm.get('description')?.touched">
                     <p *ngIf="articleEditForm.get('description')?.errors?.['required']">Description is required!</p>
                     <p *ngIf="articleEditForm.get('description')?.errors?.['minlength']">Description must be at least 10 chars long!</p>
+                    <p *ngIf="articleEditForm.get('description')?.errors?.['maxlength']">Description must be maximum 1000 chars long!</p>
                 </ng-container>
             </div>
             <div>
-                <label for="category">Category:</label>
                 <input type="text" name="category" formControlName="category" [readonly]="!isOwner">
                 <ng-container *ngIf="articleEditForm.get('category')?.touched">
                     <p *ngIf="articleEditForm.get('category')?.errors?.['required']">Category is required!</p>
                 </ng-container>
+                <button *ngIf="isOwner" [disabled]="articleEditForm.pristine || articleEditForm.invalid">Edit Article</button>
             </div>
-            <div>
-                <label for="owner">Owner:</label>
-                <input type="text" name="owner" formControlName="owner" [readonly]="true">
-            </div>
-            <button *ngIf="isOwner" [disabled]="articleEditForm.pristine || articleEditForm.invalid">Edit Article</button>
         </form>
     </div>
-
-    <button *ngIf="isOwner" (click)="articleDeleteHandler()">Delete Article</button>
-
-    <div *ngIf="!isOwner && isLoggedIn">
-        <button *ngIf="!isFollowed" (click)="articlefollowHandler()">Follow Article</button>
-        <div *ngIf="isFollowed">
-            <p>Followed</p>
-            <button (click)="articleunfollowHandler()">Unfollow</button>
+    <div class="comments" *ngIf="commentsList">
+        <div class="comment" *ngFor="let comment of commentsList">
+            <div class="commentstat">
+                <button [disabled]="!isOwner || !isLoggedIn" (click)="likeCommentHandler(comment)" [ngClass]="{'liked': comment.like}">{{comment.like?'Liked (unlike)':'Not Liked (Like)'}}</button>
+                <p>{{comment.owner.email}}</p>
+                <p>{{comment.created_at | date: 'MMMM d,y'}}</p>
+            </div>
+            <h4 class="commentaccept" *ngIf="comment.like">Accepted</h4>
+            <p class="commenttext">{{comment.comment}}</p>
         </div>
     </div>
-    <div *ngIf="commentsList">
-        <div *ngFor="let comment of commentsList">
-            <button [disabled]="!isOwner || !isLoggedIn" (click)="likeCommentHandler(comment)" [ngClass]="{'liked': comment.like}">{{comment.like}}</button>
-            <p>{{comment.owner.email}}</p>
-            <p>{{comment.comment}}</p>
-            <p>{{comment.created_at | date: 'MMMM d,y'}}</p>
-        </div>
-    </div>
-    <div *ngIf="!commentsList?.length">No Comments Yet!</div>
-    <button *ngIf="isLoggedIn" [hidden]="addComment" (click)="addCommentHandler()">Add Comment</button>
-    <div *ngIf="addComment">
+    <div class="nocomment" *ngIf="!commentsList?.length">No Comments Yet!</div>
+    <button class="addnewcomment" *ngIf="isLoggedIn" [hidden]="addComment" (click)="addCommentHandler()">Add Your Comment</button>
+    <div class="newcommentform" *ngIf="addComment">
         <app-article-comment-create></app-article-comment-create>
         <button (click)="closeCommentHandler()">Cancle</button>
     </div>

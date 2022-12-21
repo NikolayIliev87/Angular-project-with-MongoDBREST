@@ -12,8 +12,8 @@ import { ArticleService } from '../services/article.service';
 export class ArticleCreateComponent implements OnInit {
 
   articleCreateForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(5)]],
-    description: ['', [Validators.required, Validators.minLength(10)]],
+    title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+    description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
     category: ['', [Validators.required]],
   });
   // status = false

@@ -11,7 +11,7 @@ import { ArticleService } from '../services/article.service';
 export class ArticleCommentCreateComponent implements OnInit {
   articleId: any
   commentCreateForm = this.fb.group({
-    comment: ['', [Validators.required, Validators.minLength(10)]],
+    comment: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
   });
 
   constructor(

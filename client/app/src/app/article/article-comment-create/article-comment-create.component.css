@@ -1,0 +1,52 @@
+h2 {
+    margin-top: 0px;
+    padding: 5px 0px 10px 0px;
+    text-align: center;
+    background-color: rgb(9, 9, 97);
+    color: azure;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form div {
+    display: flex;
+    flex-direction: row;
+}
+
+label {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+textarea {
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 50ch;
+    height: 25ch;
+}
+
+button {
+    width: 120px;
+    margin: 5px 5px 5px 0px;
+    padding: 5px;
+    background-color: rgb(9, 9, 97);
+    color: azure;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px;
+    border-radius: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(110, 110, 113);
+}
+
+p {
+    color: red;
+}

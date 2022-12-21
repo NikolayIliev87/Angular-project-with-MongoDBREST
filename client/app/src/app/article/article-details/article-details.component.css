@@ -1,22 +1,62 @@
 section {
-    height: 90vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
 }
 
+
+.deletearticle {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: darkred;
+    color: azure;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.followarticle {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: darkgreen;
+    color: azure;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.unfollowarticle {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: darkred;
+    color: azure;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px;
+    border-radius: 10px;
+}
+.articleactions button:hover {
+    cursor: pointer;
+    background-color: rgb(110, 110, 113);
+}
+
 .articleeditform {
-    margin-top: 50px;
+    margin-top: 10px;
     width: 98vw;
     height: fit-content;
     align-items: center;
-    border: 1px;
-    border-style: solid;
 }
 
 .articleeditform .resolvedarticle {
     margin-top: 0px;
+    margin-bottom: 0px;
     padding: 5px 0px 10px 0px;
     text-align: center;
     background-color: rgb(19, 138, 19);
@@ -25,6 +65,7 @@ section {
 
 .articleeditform .openarticle {
     margin-top: 0px;
+    margin-bottom: 0px;
     padding: 5px 0px 10px 0px;
     text-align: center;
     background-color: rgb(154, 101, 2);
@@ -34,35 +75,213 @@ section {
 .articleeditform form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    border-left: 5px;
+    border-right: 5px;
+    border-bottom: 5px;
+    border-top: 0px;
+    border-style: solid;
+    border-color: darkgray;
+    background-color: darkgray;
+
+}
+
+.articleeditform form input {
+    border: none;
+    margin-bottom: 5px;
+}
+
+.articleeditform form textarea {
+    border: none;
+    background-color: lightgray;
 }
 
 .articleeditform form div {
+    padding-left: 5px;
+}
+
+.articleeditform form div:nth-child(1) input {
+    margin-top: 5px;
+    width: 95%;
+    /* width: 101ch; */
+    padding: 5px 0px 5px 0px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: rgb(9, 9, 97);
+    font-size: 20px;
+    background-color: darkgray;
+}
+
+.articleeditform form div:nth-child(2) {
+    font-weight: bold;
+    color: rgb(9, 9, 97);
+    background-color: darkgray;
+}
+
+.articleeditform form div:nth-child(2) input {
+    background-color: darkgray;
+    font-weight: bolder;
+    color: rgb(9, 9, 97);
+}
+
+.articleeditform form div:nth-child(3) {
+    margin-top: 5px;
+}
+
+.articleeditform form div:nth-child(3) textarea {
+    font-size: 15px;
+    width: 95%;
+    height: 20ch;
+    /* width: 180ch;
+    height: 20ch; */
+}
+
+.articleeditform form div:nth-child(4) {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    background-color: darkgray;
 }
 
-.articleeditform form div label {
-    width: 60px;
-    text-align: right;
+.articleeditform form div:nth-child(4) input {
+    width: 100ch;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 14px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(9, 9, 97);
+    background-color: darkgray;
 }
 
-.articleeditform form p {
-    color: red;
-    margin: 0px;
-}
-
-.articleeditform form button {
-    width: 25%;
-    align-items: center;
-    margin-bottom: 5px;
+.articleeditform form div:nth-child(4) button {
+    margin: 5px 5px 5px 0px;
+    padding: 10px;
     background-color: rgb(9, 9, 97);
+    color: azure;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.articleeditform form div:nth-child(4) button:hover {
+    cursor: pointer;
+    background-color: rgb(110, 110, 113);
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;
+    gap: 5px
+}
+
+.comment {
+    display: flex;
+    border-top: 5px;
+    border-bottom: 5px;
+    border-left: 0px;
+    border-right: 5px;
+    border-style: solid;
+    border-color: rgb(4, 61, 82);
+}
+
+.commentaccept {
+    margin: 0px;
+    writing-mode: vertical-lr;
+    text-align: center;
+    padding: 2px;
+    background-color: rgb(19, 138, 19);
+    color: azure;
+}
+.comment p {
+    margin: 5px 0px 0px 5px;
+}
+
+.commentstat {
+    width: 10vw;
+}
+
+.commenttext {
+    word-break: break-word;
+    width: 90vw;
+}
+
+.comment button {
+    margin-top: 5px;
+    margin-left: 15px;
+    width: 100px;
+    padding: 5px;
+    background-color: rgb(190, 127, 9);
+    color: azure;
+    align-items: center;
+    font-size: 12px;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.comment button:hover {
+    cursor: pointer;
+    background-color: rgb(110, 110, 113);
+}
+
+.comment div {
+    background-color: rgb(4, 61, 82);
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
     color: azure;
 }
 
-.articleeditform form button:hover {
+.nocomment {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.addnewcomment {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(190, 127, 9);
+    color: azure;
+    align-items: center;
+    font-size: 15px;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.addnewcomment:hover {
+    cursor: pointer;
+    background-color: rgb(110, 110, 113);
+}
+
+.newcommentform {
+    width: 35%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newcommentform button {
+    width: 120px;
+    margin: 5px 5px 5px 0px;
+    padding: 5px;
+    background-color: rgb(190, 127, 9);
+    color: azure;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.newcommentform button:hover {
     cursor: pointer;
     background-color: rgb(110, 110, 113);
 }

@@ -37,8 +37,8 @@ export class ArticleDetailsComponent implements OnInit {
     
     this.articleEditForm = this.fb.group({
           _id: [''],
-          title: ['', [Validators.required, Validators.minLength(5)]],
-          description: ['', [Validators.required, Validators.minLength(10)]],
+          title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+          description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
           category: ['', [Validators.required]],
           owner: [''],
           followers:[''],

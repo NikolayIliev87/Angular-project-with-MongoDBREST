@@ -1,11 +1,15 @@
+<h2>Create Comment</h2>
 <form [formGroup]="commentCreateForm" (ngSubmit)="formSubmitHandler()">
     <div>
         <label for="comment">Comment:</label>
-        <input type="text" name="comment" formControlName="comment">
-        <ng-container *ngIf="commentCreateForm.get('comment')?.touched">
-            <div *ngIf="commentCreateForm.get('comment')?.errors?.['required']">Comment text is required!</div>
-            <div *ngIf="commentCreateForm.get('comment')?.errors?.['minlength']">Comment text must be at least 10 chars long!</div>
-        </ng-container>
+        <textarea type="text" name="comment" formControlName="comment"></textarea>
     </div>
+    <ng-container *ngIf="commentCreateForm.get('comment')?.touched">
+        <p *ngIf="commentCreateForm.get('comment')?.errors?.['required']">Comment text is required!</p>
+        <p *ngIf="commentCreateForm.get('comment')?.errors?.['minlength']">Comment text must be at least 10 chars long!
+        </p>
+        <p *ngIf="commentCreateForm.get('comment')?.errors?.['maxlength']">Comment text must be maximum 500 chars long!
+        </p>
+    </ng-container>
     <button *ngIf="commentCreateForm.valid">Add Comment</button>
 </form>
