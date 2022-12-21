@@ -54,6 +54,10 @@ section {
     align-items: center;
 }
 
+.articleeditform p {
+    color: red;
+}
+
 .articleeditform .resolvedarticle {
     margin-top: 0px;
     margin-bottom: 0px;

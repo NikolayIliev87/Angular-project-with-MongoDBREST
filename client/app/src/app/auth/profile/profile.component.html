@@ -1,97 +1,126 @@
-<form [formGroup]="profileEditForm" (ngSubmit)="formSubmitHandler()">
+<section>
     <h2>Your Profile</h2>
-    <div>
-        <h3>Personal Data</h3>
-        <div>
-            <label for="email">Email:</label>
-            <input type="text" name="email" formControlName="email">
-            <ng-container *ngIf="profileEditForm.get('email')?.touched">
-                <div *ngIf="profileEditForm.get('email')?.errors?.['required']">Email is required!</div>
-                <div *ngIf="profileEditForm.get('email')?.errors?.['email']">Invalid Email!</div>
-            </ng-container>
+    <div class="profiledata">
+        <div class="profilepersonaldata">
+            <h3>Personal Data</h3>
+            <form [formGroup]="profileEditForm" (ngSubmit)="formSubmitHandler()">
+                <div class="emailmember">
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" formControlName="email" [readonly]="!isOwner">
+                        <ng-container *ngIf="profileEditForm.get('email')?.touched">
+                            <div *ngIf="profileEditForm.get('email')?.errors?.['required']">Email is required!</div>
+                            <div *ngIf="profileEditForm.get('email')?.errors?.['email']">Invalid Email!</div>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <label for="created_at">Memeber since:</label>
+                        <input type="datetime" name="created_at" formControlName="created_at" [readonly]="true">
+                    </div>
+                </div>
+                <div class="names">
+                    <div>
+                        <label for="firstname">First Name:</label>
+                        <input type="text" name="firstname" formControlName="firstname" [readonly]="!isOwner">
+                        <ng-container *ngIf="profileEditForm.get('firstname')?.touched">
+                            <div *ngIf="profileEditForm.get('firstname')?.errors?.['required']">First name is required!
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <label for="lastname">Last Name:</label>
+                        <input type="text" name="lastname" formControlName="lastname" [readonly]="!isOwner">
+                        <ng-container *ngIf="profileEditForm.get('lastname')?.touched">
+                            <div *ngIf="profileEditForm.get('lastname')?.errors?.['required']">Last name is required!
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="memberinfo">
+                    <label for="personalinfo">Personal Info:</label>
+                    <textarea type="text" name="personalinfo" formControlName="personalinfo"
+                        [readonly]="!isOwner"></textarea>
+                </div>
+                <button *ngIf="isOwner" [disabled]="profileEditForm.pristine || profileEditForm.invalid">Edit</button>
+            </form>
         </div>
-        <div>
-            <label for="firstname">First Name:</label>
-            <input type="text" name="firstname" formControlName="firstname">
-            <ng-container *ngIf="profileEditForm.get('firstname')?.touched">
-                <div *ngIf="profileEditForm.get('firstname')?.errors?.['required']">First name is required!</div>
-            </ng-container>
-        </div>
-        <div>
-            <label for="lastname">Last Name:</label>
-            <input type="text" name="lastname" formControlName="lastname">
-            <ng-container *ngIf="profileEditForm.get('lastname')?.touched">
-                <div *ngIf="profileEditForm.get('lastname')?.errors?.['required']">Last name is required!</div>
-            </ng-container>
-        </div>
-        <div>
-            <label for="personalinfo">Personal Info:</label>
-            <input type="text" name="personalinfo" formControlName="personalinfo">
-        </div>
-        <div>
-            <label for="created_at">Memeber since:</label>
-            <input type="datetime" name="created_at" formControlName="created_at" [readonly]="true">
-        </div>
-        <button [disabled]="profileEditForm.pristine || profileEditForm.invalid">Edit</button>
-    </div>
-</form>
-<div>
-    <h3>Activities Summary</h3>
-    <div>
-        <p>Own Articles: {{articleListIds?.length}}</p>
-        <button *ngIf="!showOwnArticles" (click)="showOwnArticlesHandler()">+</button>
-        <button *ngIf="showOwnArticles" (click)="hideOwnArticlesHandler()">-</button>
-        <div *ngIf="showOwnArticles">
-            <div *ngFor="let article of filteredOwnArticleList">
-                <a  routerLink="/articles/{{article._id}}">
-                    <p>Title: {{article.title}}</p>
-                </a>
-                <p>Owner: {{article.owner.email}}</p>
-                <p>Owner: {{article.created_at}}</p>
+        <div class="profileactivities">
+            <h3>Activities Summary</h3>
+            <div class="profileactivitieslist">
+                <div class="activity">
+                    <div class="activityaction">
+                        <p>Own Articles ( see articles owned by respective user ): {{articleListIds?.length}}</p>
+                        <button *ngIf="!showOwnArticles" (click)="showOwnArticlesHandler()">+</button>
+                        <button *ngIf="showOwnArticles" (click)="hideOwnArticlesHandler()">-</button>
+                    </div>
+                    <div *ngIf="showOwnArticles">
+                        <div class="activityarticle" *ngFor="let article of filteredOwnArticleList">
+                            <a routerLink="/articles/{{article._id}}">
+                                <p>{{article.title}}</p>
+                            </a>
+                            <div>
+                                <p>Owner: {{article.owner.email}}</p>
+                                <p>Created at: {{article.created_at | date: 'MMMM d,y'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="activityaction">
+                        <p>Followed Articles ( see articles followed by respective user): {{articleFollowListIds?.length}}</p>
+                        <button *ngIf="!showFollowedArticles" (click)="showFollowedArticlesHandler()">+</button>
+                        <button *ngIf="showFollowedArticles" (click)="hideFollowedArticlesHandler()">-</button>
+                    </div>
+                    <div *ngIf="showFollowedArticles">
+                        <div class="activityarticle" *ngFor="let article of filteredFollowedArticleList">
+                            <a routerLink="/articles/{{article._id}}">
+                                <p>{{article.title}}</p>
+                            </a>
+                            <div>
+                                <p>Owner: {{article.owner.email}}</p>
+                                <p>Created at: {{article.created_at | date: 'MMMM d,y'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="activityaction">
+                        <p>Your Comments ( see articles commented by respective user ): {{articleCommentsListIds?.length}}</p>
+                        <button *ngIf="!showCommentedArticles" (click)="showCommentedArticlesHandler()">+</button>
+                        <button *ngIf="showCommentedArticles" (click)="hideCommentedArticlesHandler()">-</button>
+                    </div>
+                    <div *ngIf="showCommentedArticles">
+                        <div class="activityarticle" *ngFor="let article of filteredCommentedArticleList">
+                            <a routerLink="/articles/{{article._id}}">
+                                <p>{{article.title}}</p>
+                            </a>
+                            <div>
+                                <p>Owner: {{article.owner.email}}</p>
+                                <p>Created at: {{article.created_at | date: 'MMMM d,y'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="activityaction">
+                        <p>Your Comments(Liked) ( see articles where respective user comments were accepted as answer ): {{articleLikedCommentsListIds?.length}}</p>
+                        <button *ngIf="!showLikedCommentsArticles" (click)="showLikedCommentsArticleHandler()">+</button>
+                        <button *ngIf="showLikedCommentsArticles" (click)="hideLikedCommentsArticleHandler()">-</button>
+                    </div>
+                    <div *ngIf="showLikedCommentsArticles">
+                        <div class="activityarticle" *ngFor="let article of filteredLikeCommentsArticleList">
+                            <a routerLink="/articles/{{article._id}}">
+                                <p>{{article.title}}</p>
+                            </a>
+                            <div>
+                                <p>Owner: {{article.owner.email}}</p>
+                                <p>Created at: {{article.created_at | date: 'MMMM d,y'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="rating">Your Comments rating ( ratio between respective user all comments and ones which were accepted as answer ): {{commentsRate}}%</p>
             </div>
         </div>
     </div>
-    <div>
-        <p>Followed Articles: {{articleFollowListIds?.length}}</p>
-        <button *ngIf="!showFollowedArticles" (click)="showFollowedArticlesHandler()">+</button>
-        <button *ngIf="showFollowedArticles" (click)="hideFollowedArticlesHandler()">-</button>
-        <div *ngIf="showFollowedArticles">
-            <div *ngFor="let article of filteredFollowedArticleList">
-                <a  routerLink="/articles/{{article._id}}">
-                    <p>Title: {{article.title}}</p>
-                </a>
-                <p>Owner: {{article.owner.email}}</p>
-                <p>Owner: {{article.created_at}}</p>
-            </div>
-        </div>
-    </div>
-    <div>
-        <p>Your Comments: {{articleCommentsListIds?.length}}</p>
-        <button *ngIf="!showCommentedArticles" (click)="showCommentedArticlesHandler()">+</button>
-        <button *ngIf="showCommentedArticles" (click)="hideCommentedArticlesHandler()">-</button>
-        <div *ngIf="showCommentedArticles">
-            <div *ngFor="let article of filteredCommentedArticleList">
-                <a  routerLink="/articles/{{article._id}}">
-                    <p>Title: {{article.title}}</p>
-                </a>
-                <p>Owner: {{article.owner.email}}</p>
-                <p>Owner: {{article.created_at}}</p>
-            </div>
-        </div>
-    </div>
-    <div>
-        <p>Your Comments(Liked): {{articleLikedCommentsListIds?.length}}</p>
-        <button *ngIf="!showLikedCommentsArticles" (click)="showLikedCommentsArticleHandler()">+</button>
-        <button *ngIf="showLikedCommentsArticles" (click)="hideLikedCommentsArticleHandler()">-</button>
-        <div *ngIf="showLikedCommentsArticles">
-            <div *ngFor="let article of filteredLikeCommentsArticleList">
-                <a  routerLink="/articles/{{article._id}}">
-                    <p>Title: {{article.title}}</p>
-                </a>
-                <p>Owner: {{article.owner.email}}</p>
-                <p>Owner: {{article.created_at}}</p>
-            </div>
-        </div>
-    </div>
-    <p>Your Comments rating: {{commentsRate}}%</p>
-</div>
+</section>

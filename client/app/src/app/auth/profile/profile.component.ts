@@ -6,6 +6,7 @@ import { ArticleService } from 'src/app/article/services/article.service';
 import { IArticle } from 'src/app/shared/interfaces/article';
 import { IUser } from 'src/app/shared/interfaces/user';
 import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   profileEditForm!: FormGroup
+  isOwner: any = false
 
   articleListIds: any = null
   showOwnArticles: boolean = false
@@ -40,7 +42,8 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private authService: AuthService, 
     private articleService: ArticleService, 
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private tokenService: TokenStorageService
     ) { }
 
   ngOnInit(): void {
@@ -64,6 +67,7 @@ export class ProfileComponent implements OnInit {
   getProfileData(profileId: string) {
     this.authService.getProfile(profileId).subscribe({
       next: (profile: IUser) => {
+        this.isOwner = profile._id == this.tokenService.getUser()._id
         this.editProfileData(profile)
         this.loadArticleListIds(profile._id)
         this.loadArticleFollowListIds(profile._id)
