@@ -23,6 +23,16 @@ async function commentAction(commentId) {
     await comment.save()
 };
 
+async function deleteComments(articleId) {
+    const comments = await Comment.find({'article': articleId})
+    const commentsIds = []
+    for ( let comment of comments) {
+        commentsIds.push(comment._id)
+    }
+
+    return Comment.deleteMany({_id: { $in: commentsIds}});
+}
+
 
 
 module.exports = {
@@ -30,6 +40,7 @@ module.exports = {
     getAllByArticleId,
     getAllByOwnerId,
     create,
-    commentAction
+    commentAction,
+    deleteComments
 
 }

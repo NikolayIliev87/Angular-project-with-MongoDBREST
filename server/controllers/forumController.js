@@ -81,6 +81,7 @@ forumController.put('/:id/status', hasUser(), async (req, res) => {
 
 forumController.delete('/:id', hasUser(), async (req, res) => {
     const article = await getById(req.params.id);
+
     if (req.user._id != article.owner) {
         return res.status(403).json({message: 'You can not delete this record!'})
     }

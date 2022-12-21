@@ -1,5 +1,5 @@
 const { hasUser } = require('../middlewares/guards');
-const { getAllByArticleId, create, getAllByOwnerId, commentAction, getById } = require('../services/commentService');
+const { getAllByArticleId, create, getAllByOwnerId, commentAction, getById, deleteComments } = require('../services/commentService');
 
 const commentController = require('express').Router()
 
@@ -41,6 +41,17 @@ commentController.get('/:id/like', async (req, res) => {
         res.status(400).json({ message });
     }
 });
+
+commentController.delete('/:id', hasUser(), async (req, res) => {
+        try {
+            await deleteComments(req.params.id);
+            res.status(204).end();
+        } catch (error) {
+            const message = parseError(error);
+            res.status(400).json({ message });
+        }
+    }
+);
 
 
 module.exports = commentController;

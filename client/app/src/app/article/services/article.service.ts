@@ -65,6 +65,10 @@ export class ArticleService {
     }, httpOptions)
   }
 
+  deleteComments(articleId: string) {
+    return this.httpClient.delete(`${apiURL}/comments/${articleId}`)
+  }
+
   loadComments(articleId: string) {
     return this.httpClient.get<IComment[]>(`${apiURL}/comments/article/${articleId}`)
   }

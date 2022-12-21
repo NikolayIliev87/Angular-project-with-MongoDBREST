@@ -1,4 +1,4 @@
-const Article = require("../models/Article")
+const Article = require("../models/Article");
 
 async function getAll() {
     return Article.find({}).populate('owner').sort({created_at: -1});

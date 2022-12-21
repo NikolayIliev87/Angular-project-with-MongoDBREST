@@ -118,6 +118,7 @@ export class ArticleDetailsComponent implements OnInit {
 
   articleDeleteHandler(): void {
     this.articleService.deleteArticle(this.articleEditForm.value._id).subscribe()
+    this.articleService.deleteComments(this.articleEditForm.value._id).subscribe()
     this.router.navigate(['/'])
   }
 
