@@ -1,0 +1,12 @@
+section {
+    height: 90vh;
+}
+
+section p {
+    margin: 0px;
+}
+
+section a {
+    text-decoration: none;
+    font-weight: bolder;
+}
